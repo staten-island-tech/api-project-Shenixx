@@ -4,7 +4,8 @@ import './dom'
 import { agents } from "./agents";
 import { DOMSelectors } from "./dom";
 
-const URL = `https://api.myanimelist.net/v2`;
+const URL = "https://api.jikan.moe/v4";
+
 
 async function getData(URL){
     try {
@@ -15,11 +16,11 @@ async function getData(URL){
         }
         //converting to js
         const data = await response.json();
-        document.querySelector("h1").textContent = data.content;
+        DOMSelectors.box.textContent("h1") = data.content;
         console.log(data.content);
     } catch (error) {
         console.log("boo");
-        document.querySelector("h1").textContent = "booooo";
+        DOMSelectors.box.textContent("h1") = "booooo";
     }
 }
 
