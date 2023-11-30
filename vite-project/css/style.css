@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Chewy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chewy&family=Mukta:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+
+/* :root {
+  --black: rgb(0, 0, 0);
+  --white: rgb(223, 223, 223);
+  --white2:rgba(223, 223, 223, 0.829);
+  --gray: rgb(36, 36, 36);
+  --gray2: rgba(5, 5, 5, 0.795);
+  --red: rgb(255, 0, 0);
+  --blue: rgb(0, 0, 255);
+  --whiteishmaybe: rgb(197, 197, 197);
+  --img1: url(https://cdna.artstation.com/p/assets/images/images/025/669/906/large/dino-rhinosaur-done-wp-pink-with-pic.jpg?1586544608);
+  --img2: url(https://pbs.twimg.com/media/EZdgO14WoAINDOG.jpg:large);
+}
+
+.light-theme {
+  --image: var(--img2);
+  --primary: var(--white);
+  --primary1: var(--white2);
+  --seconary: var(--black);
+  --third: var(--blue);
+  --theme: var(--whiteishmaybe);
+}
+
+.dark-theme {
+  --image: var(--img1);
+  --primary: var(--black);
+  --primary1: var(--gray2);
+  --seconary: var(--white);
+  --third: var(--red);
+  --theme: var(--gray);
+}
+
+body {
+  background-image: var(--image);
+  background-attachment: fixed;
+}
+
+.card {
+  font-family: Mukta;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem;
+  width: 26%;
+  height: 35%;
+  color: var(--seconary);
+  background-color: var(--primary1);
+  border: 1px solid var(--third);
+  margin: 1.5% auto;
+  justify-content: space-around;
+  padding: 0 auto;
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
+.image {
+  width: 12vw;
+  height: 40vh;
+}
+
+#btn {
+  display: flex;
+  width: 19%;
+  padding: 2vh;
+  margin: 1% auto;
+  align-items: center;
+  color: var(--seconary);
+  background-color: var(--primary);
+  border: 1px solid var(--third);
+}
+
+#themeSwitcher {
+  display: flex;
+  width: 19%;
+  margin: 1% auto;
+  align-items: center;
+  color: var(--seconary);
+  background-color: var(--theme);
+  border: 1px solid var(--primary);
+}
+
+
+#buttons {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.head1 {
+  font-family: Caveat;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 75%;
+  height: 8%;
+  text-align: center;
+  margin: 1% auto;
+  font-size: 350%;
+  color: var(--seconary);
+  border: var(--third);
+  background-color: var(--primary);
+}
+
+#text {
+  font-family: Caveat;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  height: 8%;
+  text-align: center;
+  margin: auto;
+  margin-top: 50px;
+  font-size: 320%;
+  color: var(--seconary);
+  border: var(--third);
+  background-color: var(--primary);
+} */
