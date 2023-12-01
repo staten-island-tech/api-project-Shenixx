@@ -1,36 +1,16 @@
 import '../css/style.css';
 import './agents';
 import './dom'
-import { agents } from "./agents";
 import { DOMSelectors } from "./dom";
 
-const URL = "https://api.jikan.moe/v4";
+const URL = "https://valorant-api.com/v1/agents";
+console.log (URL);
 
-
-async function getData(URL){
-    try {
-        //requesting a response REST API's
-        const response = await fetch (URL);
-        if (response.status !=200){
-            throw new Error(response.statusText);
-        }
-        //converting to js
-        const data = await response.json();
-        DOMSelectors.box.textContent("h1") = data.content;
-        console.log(data.content);
-    } catch (error) {
-        console.log("boo");
-        DOMSelectors.box.textContent("h1") = "booooo";
-    }
+function filter(url){
+    let agentNames = url.filter((agent)=>agent.data === "displayName").forEach((displayName) => console.log (displayName));
 }
 
-getData(URL);
-
-// function insert(arr){
-//     arr.forEach((el)=>DOMSelectors.box.insertAdjacentHTML("afterBegin",
-//     `<div class="card"> <h2 class = "">${el.name} </h2> <h3 class = "">${el.role} </h3> <h3 class = "">${el.description}</h3> <img class="image" src="${el.image}"</div> `
-//     ));
-//     }
+filter(URL);
 
 // function filter(){
 //     let buttons = DOMSelectors.button
@@ -49,6 +29,36 @@ getData(URL);
 //             }
 //         }));
 // }
+
+// let filter = agents.filter((agent)=>agent.role===role)
+// const letMePass = cards.filter((card)=> card.rarity === "Common").forEach((common) => console.log(common));
+// const dontFail = cards.filter((card)=> card.printings.includes("5ED")).forEach((printing) => console.log(printing));
+
+
+// async function getData(URL){
+//     try {
+//         //requesting a response REST API's
+//         const response = await fetch (URL);
+//         if (response.status !=200){
+//             throw new Error(response.statusText);
+//         }
+//         //converting to js
+//         const data = await response.json();
+//         DOMSelectors.box.innerHTML = data.;
+//         console.log(data.content);
+//     } catch (error) {
+//         console.log("boo");
+//         DOMSelectors.box.innerHTML = "boo";
+//     }
+// }
+
+// getData(URL);
+
+// function insert(arr){
+//     arr.forEach((el)=>DOMSelectors.box.insertAdjacentHTML("afterBegin",
+//     `<div class="card"> <h2 class = "">${el.name} </h2> <h3 class = "">${el.role} </h3> <h3 class = "">${el.description}</h3> <img class="image" src="${el.image}"</div> `
+//     ));
+//     }
 
 // function switchTheme() {
 // document.body.classList.add('dark-theme');
