@@ -1,16 +1,28 @@
 import '../css/style.css';
-import './agents';
 import './dom'
 import { DOMSelectors } from "./dom";
 
 const URL = "https://valorant-api.com/v1/agents";
-console.log (URL);
 
-function filter(url){
-    let agentNames = url.filter((agent)=>agent.data === "displayName").forEach((displayName) => console.log (displayName));
+async function getData(URL){
+    try {
+        const response = await fetch (URL);
+        if (response.status !=200){
+            throw new Error(response.statusText);
+        }
+        const agents = await response.json();
+        let agentName = agents.data.forEach((agent) => (agent.displayName));
+        console.log(agentName);
+        // DOMSelectors.box.innerHTML = agentName;
+        
+        
+    } catch (error) {
+        console.log("boo");
+        DOMSelectors.box.innerHTML = "FIX YO ERROR";
+    }
 }
 
-filter(URL);
+getData(URL);
 
 // function filter(){
 //     let buttons = DOMSelectors.button
