@@ -10,12 +10,15 @@ async function getData(URL){
         if (response.status !=200){
             throw new Error(response.statusText);
         }
-        const agents = await response.json();
-        let agentName = agents.data.forEach((agent) => (agent.displayName));
-        console.log(agentName);
-        // DOMSelectors.box.innerHTML = agentName;
-        
-        
+        const data = await response.json();
+        let agents = data.data;
+        let agentName = agents.map((agent) => (agent.displayName));
+        agentName.forEach((name)=>console.log(name));
+        DOMSelectors.box.insertAdjacentHTML("afterBegin",
+            `<div class="card"> <h2 class = "">${agentName} </h2>`);
+        // agentName.forEach(name => {
+        //     DOMSelectors.box.innerHTML = "";}
+
     } catch (error) {
         console.log("boo");
         DOMSelectors.box.innerHTML = "FIX YO ERROR";
