@@ -10,14 +10,16 @@ async function getData(URL){
         if (response.status !=200){
             throw new Error(response.statusText);
         }
-        const data = await response.json();
-        let agents = data.data;
-        let agentName = agents.map((agent) => (agent.displayName));
-        agentName.forEach((name)=>console.log(name));
-        DOMSelectors.box.insertAdjacentHTML("afterBegin",
-            `<div class="card"> <h2 class = "">${agentName} </h2>`);
-        // agentName.forEach(name => {
-        //     DOMSelectors.box.innerHTML = "";}
+        const res = await response.json();
+        const agents = res.data.filter((agent) => agent.isPlayableCharacter === true);
+        
+        // function getGood (x){
+        //     let x = agents.map((agent) => (agent.x));
+        // }
+        // function(displayName);
+        // let agentNames = agents.map((agent) => (agent.displayName));
+        agents.forEach((agent)=> DOMSelectors.box.insertAdjacentHTML("afterBegin",
+        `<div class="card"> <h3 class = ""> ${agent.displayName} </h3> <h4> ${agent.description} </h4> `));
 
     } catch (error) {
         console.log("boo");
@@ -26,6 +28,25 @@ async function getData(URL){
 }
 
 getData(URL);
+
+function switchTheme() {
+    document.body.classList.add('dark-theme');
+    DOMSelectors.themeSwitcher.value = 'dark';
+    DOMSelectors.themeSwitcher.addEventListener('click', () => {
+      if (DOMSelectors.themeSwitcher.value === 'dark'){
+        document.body.classList.add('light-theme');
+        document.body.classList.remove('dark-theme');
+        DOMSelectors.themeSwitcher.value = 'light';
+      }
+      else {
+        document.body.classList.add('dark-theme');
+        document.body.classList.remove('light-theme');
+        DOMSelectors.themeSwitcher.value = 'dark';
+      }
+    })
+    }
+    
+    switchTheme();
 
 // function filter(){
 //     let buttons = DOMSelectors.button

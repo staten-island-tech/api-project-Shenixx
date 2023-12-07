@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Chewy&family=Mukta:wght@200&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
 
-/* :root {
+:root {
   --black: rgb(0, 0, 0);
   --white: rgb(223, 223, 223);
   --white2:rgba(223, 223, 223, 0.829);
@@ -38,6 +38,14 @@ body {
   background-attachment: fixed;
 }
 
+.container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
 .card {
   font-family: Mukta;
   display: flex;
@@ -52,14 +60,6 @@ body {
   margin: 1.5% auto;
   justify-content: space-around;
   padding: 0 auto;
-}
-
-.container {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-wrap: wrap;
-  margin: 0 auto;
 }
 
 .image {
@@ -87,7 +87,6 @@ body {
   background-color: var(--theme);
   border: 1px solid var(--primary);
 }
-
 
 #buttons {
   display: flex;
@@ -125,4 +124,4 @@ body {
   color: var(--seconary);
   border: var(--third);
   background-color: var(--primary);
-} */
+}
