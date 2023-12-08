@@ -12,12 +12,7 @@ async function getData(URL){
         }
         const res = await response.json();
         const agents = res.data.filter((agent) => agent.isPlayableCharacter === true);
-        
-        // function getGood (x){
-        //     let x = agents.map((agent) => (agent.x));
-        // }
-        // function(displayName);
-        // let agentNames = agents.map((agent) => (agent.displayName));
+
         agents.forEach((agent)=> DOMSelectors.box.insertAdjacentHTML("afterBegin",
         `<div class="card"> <h3 class = ""> ${agent.displayName} </h3> <h4> ${agent.description} </h4> `));
 
@@ -43,10 +38,13 @@ function switchTheme() {
         document.body.classList.remove('light-theme');
         DOMSelectors.themeSwitcher.value = 'dark';
       }
-    })
-    }
+  })
+}
     
-    switchTheme();
+switchTheme();
+
+
+
 
 // function filter(){
 //     let buttons = DOMSelectors.button
