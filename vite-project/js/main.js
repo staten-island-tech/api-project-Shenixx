@@ -13,8 +13,13 @@ async function getData(URL){
         const res = await response.json();
         const agents = res.data.filter((agent) => agent.isPlayableCharacter === true);
 
+        agents.forEach((agent)=> console.log(agent.fullPortrait));
+        
         agents.forEach((agent)=> DOMSelectors.box.insertAdjacentHTML("afterBegin",
-        `<div class="card"> <h3 class = ""> ${agent.displayName} </h3> <h4> ${agent.description} </h4> `));
+        `<div class="card"> 
+        <h3 class = "">${agent.displayName}</h3> 
+        <h4 class = "">${agent.description}</h4> 
+        <img class = "image" src="${agent.fullPortrait}">`));
 
     } catch (error) {
         console.log("boo");
