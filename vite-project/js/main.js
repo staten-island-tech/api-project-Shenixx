@@ -2,7 +2,9 @@ import '../css/style.css';
 import './dom'
 import { DOMSelectors } from "./dom";
 
-const URL = "https://valorant-api.com/v1/agents";
+const agents = "https://valorant-api.com/v1/agents";
+const weapons = "https://valorant-api.com/v1/weapons";
+ 
 
 async function getData(URL){
     try {
@@ -13,8 +15,6 @@ async function getData(URL){
         const res = await response.json();
         const agents = res.data.filter((agent) => agent.isPlayableCharacter === true);
 
-        agents.forEach((agent)=> console.log(agent.fullPortrait));
-        
         agents.forEach((agent)=> DOMSelectors.box.insertAdjacentHTML("afterBegin",
         `<div class="card"> 
         <h3 class = "">${agent.displayName}</h3> 
@@ -27,7 +27,29 @@ async function getData(URL){
     }
 }
 
-getData(URL);
+async function getWeapon(URL){
+  try {
+      const response = await fetch (URL);
+      if (response.status !=200){
+          throw new Error(response.statusText);
+      }
+      const res = await response.json();
+
+      agents.forEach((weapon)=> DOMSelectors.box.insertAdjacentHTML("afterBegin",
+      `<div class="card"> 
+      <h3 class = "">${weapon.displayName}</h3> 
+      <h4 class = "">${weapon.category}</h4> 
+      <img class = "image" src="${weapon.displayIcon}">`));
+
+  } catch (error) {
+      console.log("boo");
+      DOMSelectors.box.innerHTML = "FIX YO ERROR";
+  }
+}
+
+getData(agents);
+getWeapon(weapons);
+
 
 function switchTheme() {
     document.body.classList.add('dark-theme');
@@ -45,7 +67,7 @@ function switchTheme() {
       }
   })
 }
-    
+
 switchTheme();
 
 
