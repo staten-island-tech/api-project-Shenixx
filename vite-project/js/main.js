@@ -34,8 +34,9 @@ async function getWeapon(URL){
           throw new Error(response.statusText);
       }
       const res = await response.json();
+      const weapons = res.data;
 
-      agents.forEach((weapon)=> DOMSelectors.box.insertAdjacentHTML("afterBegin",
+      weapons.forEach((weapon)=> DOMSelectors.box.insertAdjacentHTML("afterBegin",
       `<div class="card"> 
       <h3 class = "">${weapon.displayName}</h3> 
       <h4 class = "">${weapon.category}</h4> 
@@ -46,10 +47,6 @@ async function getWeapon(URL){
       DOMSelectors.box.innerHTML = "FIX YO ERROR";
   }
 }
-
-getData(agents);
-getWeapon(weapons);
-
 
 function switchTheme() {
     document.body.classList.add('dark-theme');
@@ -69,8 +66,6 @@ function switchTheme() {
 }
 
 switchTheme();
-
-
 
 
 // function filter(){

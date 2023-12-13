@@ -1,39 +1,57 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>API Project</title>
-  </head>
 
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Project</title>
+</head>
 
-  <body>
-    <section>
-      <h1>Valorant</h1>
-      <div>
-        <h2></h2>
-      </div>
-    </section>
+<body>
+  <section>
+    <h1>Valorant</h1>
+    <div>
+      <h2></h2>
+    </div>
+  </section>
 
-    <div class=""> 
-        <p id="">Select Role</p>
-        <div class="buttons">
-            <button type="button" id="btn">Agents</button>
-            <button type="button" id="btn">Weapons</button>
-            <button type="button" id="btn">Mix</button>
-        </div>
+  <div class="">
+    <p id="">Selectors</p>
+    <div class="buttons">
+      <button type="button" id="btn">Mix</button>
     </div>
 
-    <button value='dark' id="themeSwitcher">Switch Theme</button>
 
-    <section>
-      <div class = "container" id="app"></div>
+    <div class="dropdown">
 
-      <div></div>
-    </section>
+      <label for="roles">Choose An Agent Role:</label>
+      <select name="roles" id="roles">
+        <option value="all">All</option>
+        <option value="duelist">Duelist</option>
+        <option value="initiator">Initiator</option>
+        <option value="sentinel">Sentinel</option>
+        <option value="controller">Controller</option>
+      </select>
+
+      <label for="weapons">Choose An Weapon Category:</label>
+      <select name="weapons" id="weapons">
+
+      </select>
+    </div>
+
+  </div>
+
+  <button value='dark' id="themeSwitcher">Switch Theme</button>
+
+  <section>
+    <div class="container" id="app"></div>
+
+    <div></div>
+  </section>
 
 
-    <script type="module" src="./js/main.js"></script>
-  </body>
+  <script type="module" src="./js/main.js"></script>
+</body>
+
 </html>
