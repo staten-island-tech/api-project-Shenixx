@@ -68,6 +68,13 @@ function switchTheme() {
 switchTheme();
 
 
+
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+
+
 // function filter(){
 //     let buttons = DOMSelectors.button
     
