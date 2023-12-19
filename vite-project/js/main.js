@@ -13,7 +13,10 @@ async function getAgents(URL, role){
         }
         const res = await response.json();
         const agents = res.data.filter((agent) => agent.isPlayableCharacter === true);
-          
+        
+        const apiRole = agents.filter((agent) => agent.role.includes("displayName"));
+        console.log(apiRole);
+
         agents.forEach((agent)=> DOMSelectors.box.insertAdjacentHTML("afterBegin",
         `<div class="card"> 
         <h3 class = "">${agent.displayName}</h3> 
