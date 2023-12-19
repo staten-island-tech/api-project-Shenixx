@@ -4,9 +4,8 @@ import { DOMSelectors } from "./dom";
 
 const agents = "https://valorant-api.com/v1/agents";
 const weapons = "https://valorant-api.com/v1/weapons";
- 
 
-async function getData(URL){
+async function getAgents(URL, role){
     try {
         const response = await fetch (URL);
         if (response.status !=200){
@@ -14,18 +13,21 @@ async function getData(URL){
         }
         const res = await response.json();
         const agents = res.data.filter((agent) => agent.isPlayableCharacter === true);
-
+          
         agents.forEach((agent)=> DOMSelectors.box.insertAdjacentHTML("afterBegin",
         `<div class="card"> 
         <h3 class = "">${agent.displayName}</h3> 
         <h4 class = "">${agent.description}</h4> 
-        <img class = "image" src="${agent.fullPortrait}">`));
-
+        <img class = "image" src="${agent.fullPortrait}">`
+        ));
+        
     } catch (error) {
         console.log("boo");
         DOMSelectors.box.innerHTML = "FIX YO ERROR";
     }
 }
+
+getAgents(agents);
 
 async function getWeapon(URL){
   try {
@@ -48,6 +50,25 @@ async function getWeapon(URL){
   }
 }
 
+function filter(){
+  let buttons = DOMSelectors.button
+  
+  buttons.forEach((agent)=>agent.addEventListener("click", function(){
+      let role = agent.textContent
+      let filter = agents.filter((agent)=>agent.role===role)
+          DOMSelectors.box.innerHTML = "";
+          insert(filter)
+          if (role === "All") {
+              DOMSelectors.box.innerHTML = "";
+              insert(agents);
+          }else {
+              DOMSelectors.box.innerHTML = "";
+              insert(filter)
+          }
+      }));
+}
+
+
 function switchTheme() {
     document.body.classList.add('dark-theme');
     DOMSelectors.themeSwitcher.value = 'dark';
@@ -66,12 +87,6 @@ function switchTheme() {
 }
 
 switchTheme();
-
-
-
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
 
 
 
