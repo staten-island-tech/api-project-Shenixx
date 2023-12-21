@@ -2,8 +2,8 @@ import '../css/style.css';
 import './dom'
 import { DOMSelectors } from "./dom";
 
-const agents = "https://valorant-api.com/v1/agents";
-const weapons = "https://valorant-api.com/v1/weapons";
+const apiAgents = "https://valorant-api.com/v1/agents";
+const apiWeapons = "https://valorant-api.com/v1/weapons";
 
 async function getAgents(URL){
     try {
@@ -13,47 +13,48 @@ async function getAgents(URL){
         }
         const res = await response.json();
         const agents = res.data.filter((agent) => agent.isPlayableCharacter === true);
-    
-
-        agents.forEach((agent)=> DOMSelectors.box.insertAdjacentHTML("afterBegin",
-        `<div class="card"> 
-        <h3 class = "">${agent.displayName}</h3> 
-        <h4 class = "">${agent.description}</h4> 
-        <img class = "image" src="${agent.fullPortrait}">`
-        ));
-
-        let buttons = DOMSelectors.button    
-        buttons.forEach((agent)=>agent.addEventListener("click", function(){
-            let arole = agent.textContent
-            console.log(arole);
-            filter(agents);
-        }));
-
         
+        console.log(agents);
+
     } catch (error) {
         console.log("boo");
         DOMSelectors.box.innerHTML = "FIX YO ERROR";
     }
 }
 
-getAgents(agents);
+getAgents(apiAgents);
 
-function filter(URL) {
-    const getRole = agents.filter((agent) => agent.role);
-    let getChar = getRole.filter((role) => role.displayName === (arole));
+function insertA(arr){
+    arr.forEach((el)=> DOMSelectors.box.insertAdjacentHTML("afterBegin",
+        `<div class="card"> 
+        <h3 class = "">${el.displayName}</h3> 
+        <h4 class = "">${el.description}</h4> 
+        <img class = "image" src="${el.fullPortrait}">`
+        ));
+}
 
-    console.log(getChar);
-    DOMSelectors.box.innerHTML = "";
-    getAgents(getChar)
-    if (arole === "All") {
-        DOMSelectors.box.innerHTML = "";
-        getAgents(agents);
-    } else {
-        DOMSelectors.box.innerHTML = "";
-        getAgents(getChar)
-    }
-};
 
+// async function filter(arr) {
+//     let data = await getAgents(apiAgents);
+//     let buttons = DOMSelectors.button;    
+//     buttons.forEach((role)=>role.addEventListener("click", function(){
+//         let arole = role.textContent;
+//         console.log(arole);
+//         const getRole = arr.filter((el) => el.role);
+//         let getChar = getRole.filter((el) => el.displayName === (arole));
+//         console.log(getChar);
+// }));
+
+//     // DOMSelectors.box.innerHTML = "";
+//     // getAgents(getChar)
+//     // if (arole === "All") {
+//     //     DOMSelectors.box.innerHTML = "";
+//     //     getAgents(agents);
+//     // } else {
+//     //     DOMSelectors.box.innerHTML = "";
+//     //     getAgents(getChar)
+//     // }
+// };
 
 // let filter = agents.filter((agent)=>agent.role===role)
 // const letMePass = cards.filter((card)=> card.rarity === "Common").forEach((common) => console.log(common));
