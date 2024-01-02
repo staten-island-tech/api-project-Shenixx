@@ -23,8 +23,29 @@ async function getAgents(URL){
     }
 }
 
-getAgents(apiAgents);
+async function insertA(arr, role){
+    console.log(arr);
+    DOMSelectors.box.innerHTML = "";
+    if (role === "All" || "") {
+        arr.forEach((el)=> DOMSelectors.box.insertAdjacentHTML("afterBegin",
+        `<div class="card"> 
+        <h3 class = "">${el.displayName}</h3> 
+        <h4 class = "">${el.description}</h4> 
+        <img class = "image" src="${el.fullPortrait}" alt ="agent portrait">`
+        ));
+    }
+    else {
+        const filterE = arr.filter((el) => el.role.displayName === role )
+        filterE.forEach((el)=> DOMSelectors.box.insertAdjacentHTML("afterBegin",
+        `<div class="card"> 
+        <h3 class = "">${el.displayName}</h3> 
+        <h4 class = "">${el.description}</h4> 
+        <img class = "image" src="${el.fullPortrait}" alt ="agent portrait">`
+        ));
+    }    
+}
 
+getAgents(apiAgents);
 
 const agents = await getAgents(apiAgents);
 console.log(agents);
@@ -35,30 +56,8 @@ buttons.forEach((agent) => agent.addEventListener("click", async function () {
     let role = agent.textContent
 
     await insertA(agents, role);
-
 }));
 
-async function insertA(arr, role){
-    console.log(arr);
-    DOMSelectors.box.innerHTML = "";
-    if (role === "All") {
-        arr.forEach((el)=> DOMSelectors.box.insertAdjacentHTML("afterBegin",
-        `<div class="card"> 
-        <h3 class = "">${el.displayName}</h3> 
-        <h4 class = "">${el.description}</h4> 
-        <img class = "image" src="${el.fullPortrait}">`
-        ));
-    }
-    else {
-        const filterE = arr.filter((el) => el.role.displayName === role )
-        filterE.forEach((el)=> DOMSelectors.box.insertAdjacentHTML("afterBegin",
-        `<div class="card"> 
-        <h3 class = "">${el.displayName}</h3> 
-        <h4 class = "">${el.description}</h4> 
-        <img class = "image" src="${el.fullPortrait}">`
-        ));
-    }    
-}
 
 async function getWeapon(URL){
   try {
@@ -73,7 +72,7 @@ async function getWeapon(URL){
       `<div class="card"> 
       <h3 class = "">${weapon.displayName}</h3> 
       <h4 class = "">${weapon.category}</h4> 
-      <img class = "image" src="${weapon.displayIcon}">`));
+      <img class = "image" src="${weapon.displayIcon}" alt ="weapon portrait"> `));
 
   } catch (error) {
       console.log("boo");
@@ -99,3 +98,5 @@ function switchTheme() {
   })
 }
 
+//contrast ratio and proper html syntax 
+//alt text and constrast and basic stuff yes
