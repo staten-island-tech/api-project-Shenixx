@@ -1,6 +1,7 @@
 const DOMSelectors = {
-    box: document.getElementById("app"),
-    button: document.querySelectorAll("#btn"),
+    box: document.getElementById("appAgent"),
+    boxW: document.getElementById("appWeapon"),
+    buttonA: document.querySelectorAll("#btnA"),
     themeSwitcher: document.getElementById("themeSwitcher"),
 };  
 

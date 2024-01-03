@@ -14,7 +14,6 @@ async function getAgents(URL){
         const res = await response.json();
         const agents = res.data.filter((agent) => agent.isPlayableCharacter === true);
 
-
         return agents;
 
     } catch (error) {
@@ -24,39 +23,48 @@ async function getAgents(URL){
 }
 
 async function insertA(arr, role){
-    console.log(arr);
-    DOMSelectors.box.innerHTML = "";
-    if (role === "All" || "") {
+    DOMSelectors.box.insertAdjacentHTML ("afterbegin" = "");
+
+    DOMSelectors.box.insertAdjacentHTML("afterBegin",
+        `<h3> Agents </h3> `);
+
+    if (role === "All" || role === "") {
         arr.forEach((el)=> DOMSelectors.box.insertAdjacentHTML("afterBegin",
-        `<div class="card"> 
-        <h3 class = "">${el.displayName}</h3> 
-        <h4 class = "">${el.description}</h4> 
+        `<div class="card">
+        <h4 class = "">${el.displayName}</h4> 
+        <h5 class = "">${el.description}</h5> 
         <img class = "image" src="${el.fullPortrait}" alt ="agent portrait">`
         ));
     }
     else {
-        const filterE = arr.filter((el) => el.role.displayName === role )
+        const filterE = arr.filter((el) => el.role.displayName === role || el.role.displayName === "" )
         filterE.forEach((el)=> DOMSelectors.box.insertAdjacentHTML("afterBegin",
         `<div class="card"> 
-        <h3 class = "">${el.displayName}</h3> 
-        <h4 class = "">${el.description}</h4> 
+        <h4 class = "">${el.displayName}</h4> 
+        <h5 class = "">${el.description}</h5> 
         <img class = "image" src="${el.fullPortrait}" alt ="agent portrait">`
         ));
     }    
 }
 
-getAgents(apiAgents);
+async function filter() {
+    getAgents(apiAgents);
+    const agents = await getAgents(apiAgents);
 
-const agents = await getAgents(apiAgents);
-console.log(agents);
+    await insertA(agents, "");
+ 
+    let buttons = DOMSelectors.buttonA;
+    buttons.forEach((agent) => agent.addEventListener("click", async function () {
+        let role = agent.textContent
+
+        await insertA(agents, role);
+    }));
+}
+
+filter();
 
 
-let buttons = DOMSelectors.button;
-buttons.forEach((agent) => agent.addEventListener("click", async function () {
-    let role = agent.textContent
 
-    await insertA(agents, role);
-}));
 
 
 async function getWeapon(URL){
