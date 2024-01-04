@@ -23,13 +23,14 @@ async function getAgents(URL){
 }
 
 async function insertA(arr, role){
-    DOMSelectors.box.insertAdjacentHTML ("afterbegin" = "");
 
-    DOMSelectors.box.insertAdjacentHTML("afterBegin",
-        `<h3> Agents </h3> `);
+    DOMSelectors.box.innerHTML = "";
+
+    DOMSelectors.box.insertAdjacentHTML("beforeBegin",
+        `<h3 id = "title"> Agents </h3> `);
 
     if (role === "All" || role === "") {
-        arr.forEach((el)=> DOMSelectors.box.insertAdjacentHTML("afterBegin",
+        arr.forEach((el)=> DOMSelectors.box.insertAdjacentHTML("beforeEnd",
         `<div class="card">
         <h4 class = "">${el.displayName}</h4> 
         <h5 class = "">${el.description}</h5> 
@@ -38,7 +39,7 @@ async function insertA(arr, role){
     }
     else {
         const filterE = arr.filter((el) => el.role.displayName === role || el.role.displayName === "" )
-        filterE.forEach((el)=> DOMSelectors.box.insertAdjacentHTML("afterBegin",
+        filterE.forEach((el)=> DOMSelectors.box.insertAdjacentHTML("beforeEnd",
         `<div class="card"> 
         <h4 class = "">${el.displayName}</h4> 
         <h5 class = "">${el.description}</h5> 
@@ -78,8 +79,8 @@ async function getWeapon(URL){
 
       weapons.forEach((weapon)=> DOMSelectors.box.insertAdjacentHTML("afterBegin",
       `<div class="card"> 
-      <h3 class = "">${weapon.displayName}</h3> 
-      <h4 class = "">${weapon.category}</h4> 
+      <h4 class = "">${weapon.displayName}</h4> 
+      <h5 class = "">${weapon.category}</h5> 
       <img class = "image" src="${weapon.displayIcon}" alt ="weapon portrait"> `));
 
   } catch (error) {

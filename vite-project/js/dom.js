@@ -3,6 +3,7 @@ const DOMSelectors = {
     boxW: document.getElementById("appWeapon"),
     buttonA: document.querySelectorAll("#btnA"),
     themeSwitcher: document.getElementById("themeSwitcher"),
+
 };  
 
 export {DOMSelectors};
