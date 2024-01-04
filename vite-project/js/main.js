@@ -23,11 +23,13 @@ async function getAgents(URL){
 }
 
 async function insertA(arr, role){
-
+    
+    
     DOMSelectors.box.innerHTML = "";
+    
 
     DOMSelectors.box.insertAdjacentHTML("beforeBegin",
-        `<h3 id = "title"> Agents </h3> `);
+        `<h3 class = insertedContent "title"> Agents </h3> `);
 
     if (role === "All" || role === "") {
         arr.forEach((el)=> DOMSelectors.box.insertAdjacentHTML("beforeEnd",

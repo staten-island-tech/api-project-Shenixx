@@ -129,11 +129,3 @@ body {
   border: var(--third);
   background-color: var(--primary);
 } */
-
-#title{
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  margin-left: 50%;
-
-}
