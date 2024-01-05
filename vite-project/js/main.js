@@ -18,21 +18,17 @@ async function getAgents(URL){
 
     } catch (error) {
         console.log("boo");
-        DOMSelectors.box.innerHTML = "FIX YO ERROR";
+        DOMSelectors.boxA.innerHTML = "FIX YO ERROR";
     }
 }
 
 async function insertA(arr, role){
-    
-    
-    DOMSelectors.box.innerHTML = "";
-    
+    DOMSelectors.boxA.innerHTML = "";
 
-    DOMSelectors.box.insertAdjacentHTML("beforeBegin",
-        `<h3 class = insertedContent "title"> Agents </h3> `);
+    DOMSelectors.titleA.innerHTML = "Agents";
 
     if (role === "All" || role === "") {
-        arr.forEach((el)=> DOMSelectors.box.insertAdjacentHTML("beforeEnd",
+        arr.forEach((el)=> DOMSelectors.boxA.insertAdjacentHTML("beforeEnd",
         `<div class="card">
         <h4 class = "">${el.displayName}</h4> 
         <h5 class = "">${el.description}</h5> 
@@ -40,8 +36,8 @@ async function insertA(arr, role){
         ));
     }
     else {
-        const filterE = arr.filter((el) => el.role.displayName === role || el.role.displayName === "" )
-        filterE.forEach((el)=> DOMSelectors.box.insertAdjacentHTML("beforeEnd",
+        const filterA = arr.filter((el) => el.role.displayName === role || el.role.displayName === "" )
+        filterA.forEach((el)=> DOMSelectors.boxA.insertAdjacentHTML("beforeEnd",
         `<div class="card"> 
         <h4 class = "">${el.displayName}</h4> 
         <h5 class = "">${el.description}</h5> 
@@ -50,7 +46,8 @@ async function insertA(arr, role){
     }    
 }
 
-async function filter() {
+
+async function filterA() {
     getAgents(apiAgents);
     const agents = await getAgents(apiAgents);
 
@@ -64,32 +61,62 @@ async function filter() {
     }));
 }
 
-filter();
-
-
-
-
-
 async function getWeapon(URL){
-  try {
-      const response = await fetch (URL);
-      if (response.status !=200){
-          throw new Error(response.statusText);
-      }
-      const res = await response.json();
-      const weapons = res.data;
+    try {
+        const response = await fetch (URL);
+        if (response.status !=200){
+            throw new Error(response.statusText);
+        }
+        const res = await response.json();
+        const weapons = res.data;
+  
+        return weapons;
 
-      weapons.forEach((weapon)=> DOMSelectors.box.insertAdjacentHTML("afterBegin",
-      `<div class="card"> 
-      <h4 class = "">${weapon.displayName}</h4> 
-      <h5 class = "">${weapon.category}</h5> 
-      <img class = "image" src="${weapon.displayIcon}" alt ="weapon portrait"> `));
-
-  } catch (error) {
-      console.log("boo");
-      DOMSelectors.box.innerHTML = "FIX YO ERROR";
-  }
+    } catch (error) {
+        console.log("boo");
+        DOMSelectors.boxW.innerHTML = "FIX YO ERROR";
+    }
 }
+
+async function insertW(arr, category){
+    DOMSelectors.boxW.innerHTML = "";
+    DOMSelectors.titleW.innerHTML = "Weapons";
+
+    console.log(category);
+
+    if (category === "ALL" || category === "") {
+        arr.forEach((el)=> DOMSelectors.boxW.insertAdjacentHTML("beforeEnd",
+        `<div class="card">
+        <h4 class = "">${el.displayName}</h4> 
+       <img class = "image" src="${el.displayIcon}" alt ="weapon portrait"> `
+        ));
+    }
+    else {
+        const filterW = arr.filter((el) => el.category.includes(category))
+        filterW.forEach((el)=> DOMSelectors.boxW.insertAdjacentHTML("beforeEnd",
+        `<div class="card"> 
+        <h4 class = "">${el.displayName}</h4> 
+        <img class = "image" src="${el.displayIcon}" alt ="weapon portrait"> `
+        ));
+    }    
+}
+
+async function filterW() {
+    getWeapon(apiWeapons);
+    const weapons = await getWeapon(apiWeapons);
+
+    await insertW(weapons, "");
+ 
+    let buttons = DOMSelectors.buttonW;
+    buttons.forEach((weapon) => weapon.addEventListener("click", async function () {
+        let category = weapon.textContent
+
+        await insertW(weapons, category);
+    }));
+}
+
+filterW();
+filterA();
 
 
 function switchTheme() {
