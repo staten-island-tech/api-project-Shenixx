@@ -94,7 +94,7 @@ async function insertW(arr, category){
         filterW.forEach((el)=> DOMSelectors.boxW.insertAdjacentHTML("beforeEnd",
         `<div class="card"> 
         <h4 class = "">${el.displayName}</h4> 
-        <img class = "image" src="${el.displayIcon}" alt ="weapon portrait"> `
+        <img class = "image" src="${el.displayIcon}" alt =">${el.displayName} portrait"> `
         ));
     }    
 }
