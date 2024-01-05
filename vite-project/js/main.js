@@ -82,8 +82,6 @@ async function insertW(arr, category){
     DOMSelectors.boxW.innerHTML = "";
     DOMSelectors.titleW.innerHTML = "Weapons";
 
-    console.log(category);
-
     if (category === "ALL" || category === "") {
         arr.forEach((el)=> DOMSelectors.boxW.insertAdjacentHTML("beforeEnd",
         `<div class="card">
