@@ -24,33 +24,30 @@ async function getAgents(URL){
 
 async function insertA(arr, role){
     DOMSelectors.boxA.innerHTML = "";
-
     DOMSelectors.titleA.innerHTML = "Agents";
 
     if (role === "All" || role === "") {
         arr.forEach((el)=> DOMSelectors.boxA.insertAdjacentHTML("beforeEnd",
         `<div class="card">
-        <h4 class = "">${el.displayName}</h4> 
-        <h5 class = "">${el.description}</h5> 
-        <img class = "image" src="${el.fullPortrait}" alt ="agent portrait">`
+        <h4>${el.displayName}</h4> 
+        <h5>${el.description}</h5> 
+        <img class = "image" src="${el.fullPortrait}" alt ="${el.displayName} portrait">`
         ));
     }
     else {
         const filterA = arr.filter((el) => el.role.displayName === role || el.role.displayName === "" )
         filterA.forEach((el)=> DOMSelectors.boxA.insertAdjacentHTML("beforeEnd",
         `<div class="card"> 
-        <h4 class = "">${el.displayName}</h4> 
-        <h5 class = "">${el.description}</h5> 
-        <img class = "image" src="${el.fullPortrait}" alt ="agent portrait">`
+        <h4>${el.displayName}</h4> 
+        <h5>${el.description}</h5> 
+        <img class = "image" src="${el.fullPortrait}" alt ="${el.displayName} portrait">`
         ));
     }    
 }
 
 
-async function filterA() {
-    getAgents(apiAgents);
+async function filterAgents() {
     const agents = await getAgents(apiAgents);
-
     await insertA(agents, "");
  
     let buttons = DOMSelectors.buttonA;
@@ -82,27 +79,26 @@ async function insertW(arr, category){
     DOMSelectors.boxW.innerHTML = "";
     DOMSelectors.titleW.innerHTML = "Weapons";
 
+    
     if (category === "ALL" || category === "") {
         arr.forEach((el)=> DOMSelectors.boxW.insertAdjacentHTML("beforeEnd",
         `<div class="card">
-        <h4 class = "">${el.displayName}</h4> 
-       <img class = "image" src="${el.displayIcon}" alt ="weapon portrait"> `
-        ));
+        <h4>${el.displayName}</h4> 
+        <h5>Category: ${el.category.replace("EEquippableCategory::", "")}</h5>
+       <img class = "image" src="${el.displayIcon}" alt ="${el.displayName} portrait"> `        ));
     }
     else {
         const filterW = arr.filter((el) => el.category.includes(category))
         filterW.forEach((el)=> DOMSelectors.boxW.insertAdjacentHTML("beforeEnd",
         `<div class="card"> 
-        <h4 class = "">${el.displayName}</h4> 
-        <img class = "image" src="${el.displayIcon}" alt =">${el.displayName} portrait"> `
+        <h4>${el.displayName}</h4>
+        <img class = "image" src="${el.displayIcon}" alt = "${el.displayName} portrait"> `
         ));
     }    
 }
 
-async function filterW() {
-    getWeapon(apiWeapons);
+async function filterWeapons() {
     const weapons = await getWeapon(apiWeapons);
-
     await insertW(weapons, "");
  
     let buttons = DOMSelectors.buttonW;
@@ -112,10 +108,6 @@ async function filterW() {
         await insertW(weapons, category);
     }));
 }
-
-filterW();
-filterA();
-
 
 function switchTheme() {
     document.body.classList.add('dark-theme');
@@ -133,6 +125,12 @@ function switchTheme() {
       }
   })
 }
+
+
+filterAgents()
+filterWeapons();
+switchTheme();
+
 
 //contrast ratio and proper html syntax 
 //alt text and constrast and basic stuff yes
