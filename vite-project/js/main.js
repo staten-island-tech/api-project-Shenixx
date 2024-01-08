@@ -17,8 +17,8 @@ async function getAgents(URL){
         return agents;
 
     } catch (error) {
-        console.log("boo");
-        DOMSelectors.boxA.innerHTML = "FIX YO ERROR";
+        console.log("failed to obtain data");
+        DOMSelectors.boxA.innerHTML = "failed to obtain data";
     }
 }
 
@@ -70,8 +70,8 @@ async function getWeapon(URL){
         return weapons;
 
     } catch (error) {
-        console.log("boo");
-        DOMSelectors.boxW.innerHTML = "FIX YO ERROR";
+        console.log("failed to obtain data");
+        DOMSelectors.boxW.innerHTML = "failed to obtain data";
     }
 }
 
